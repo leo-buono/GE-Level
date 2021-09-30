@@ -7,12 +7,14 @@ public class PlayerMovement : MonoBehaviour
     public float speedMultiplier = 5f;
     public float jumpForce = 10f;
     Rigidbody rb;
+    Vector3 defaultPosition;
 
     bool isFalling = false;
 
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
+        defaultPosition = transform.position;
     }
     //Used so that we can move in diagonals and combine movement and stuff like that
     Vector3 currentMovement;
@@ -47,7 +49,15 @@ public class PlayerMovement : MonoBehaviour
         //TODO: player rotation which should rotate the camera as well
         if(Input.GetKey(KeyCode.Q))
         {
-            //transform.rotation;
+            transform.rotation *= Quaternion.AngleAxis(45f * Time.deltaTime, Vector3.up);
+        }
+        if(Input.GetKey(KeyCode.E))
+        {
+            transform.rotation *= Quaternion.AngleAxis(-45f * Time.deltaTime, Vector3.up);
+        }
+        if(transform.position.y < -5f)
+        {
+            transform.position = defaultPosition;
         }
     } 
     void OnCollisionStay()

@@ -79,7 +79,12 @@ public class FadingPlatform : MonoBehaviour
     {
         if(col.gameObject.tag == "Player")
         {
+            //This is jank but it works
             startTimer = false;
+            if(fading)
+            {
+                startTimer = true;
+            }
             fading = false;
             freezeTimer = 0f;
         }
