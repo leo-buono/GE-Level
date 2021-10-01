@@ -6,15 +6,17 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speedMultiplier = 5f;
     public float jumpForce = 10f;
+    public float turnSpeed = 90f;
+    float currentAngle;
     Rigidbody rb;
-    Vector3 defaultPosition;
+    Vector3 respawnPosition;
 
     bool isFalling = false;
 
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
-        defaultPosition = transform.position;
+        respawnPosition = transform.position;
     }
     //Used so that we can move in diagonals and combine movement and stuff like that
     Vector3 currentMovement;
@@ -40,7 +42,11 @@ public class PlayerMovement : MonoBehaviour
         {
             currentMovement += Vector3.right;
         }    
-        rb.velocity = new Vector3(currentMovement.x * speedMultiplier, rb.velocity.y, currentMovement.z * speedMultiplier);  
+        //adjusting movement
+        Vector3 move = new Vector3(currentMovement.x * speedMultiplier, rb.velocity.y, currentMovement.z * speedMultiplier); 
+        move = Quaternion.AngleAxis(currentAngle, Vector3.up) * move; 
+        rb.velocity = move;
+        //Jumping
         if(Input.GetKeyDown(KeyCode.Space) && !isFalling)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
@@ -49,23 +55,30 @@ public class PlayerMovement : MonoBehaviour
         //TODO: player rotation which should rotate the camera as well
         if(Input.GetKey(KeyCode.Q))
         {
-            transform.rotation *= Quaternion.AngleAxis(45f * Time.deltaTime, Vector3.up);
+            transform.rotation *= Quaternion.AngleAxis(turnSpeed * Time.deltaTime, Vector3.up);
+            currentAngle = transform.rotation.eulerAngles.y;
         }
         if(Input.GetKey(KeyCode.E))
         {
-            transform.rotation *= Quaternion.AngleAxis(-45f * Time.deltaTime, Vector3.up);
+            transform.rotation *= Quaternion.AngleAxis(-turnSpeed * Time.deltaTime, Vector3.up);
+            currentAngle = transform.rotation.eulerAngles.y;
         }
-        if(transform.position.y < -5f)
+        if(transform.position.y < -50f)
         {
-            transform.position = defaultPosition;
+            transform.position = respawnPosition;
         }
     } 
     void OnCollisionStay()
     {
         isFalling = false;
     }
-    // void OnCollisionExit()
-    // {
-    //     isFalling = true;
-    // }
+
+    void OnCollisionEnter(Collision col)
+    {
+        if(col.gameObject.tag == "Checkpoint")
+        {
+            Vector3 newPos = new Vector3(col.gameObject.transform.position.x, col.gameObject.transform.position.y + 5, col.gameObject.transform.position.z);
+            respawnPosition = newPos;
+        }
+    }
 }

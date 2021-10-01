@@ -17,5 +17,9 @@ public class RotatingPlatform : MonoBehaviour
         {
             rb.AddTorque(transform.forward * force * Time.deltaTime);
         }
+        else if((spinSpeed < 0) && (rb.angularVelocity.z > spinSpeed))
+        {
+            rb.AddTorque(transform.forward * force * Time.deltaTime);
+        }
     }
 }
