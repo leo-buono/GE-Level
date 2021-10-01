@@ -149,7 +149,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 67767283}
-  m_Text: Hello World
+  m_Text: FINISH
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -213,8 +213,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 67767283}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -169.1, y: 8.1, z: 172.6}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -186.2, y: 21.3, z: 205.9}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 16
@@ -942,6 +942,7 @@ GameObject:
   - component: {fileID: 1901275443}
   - component: {fileID: 1901275442}
   - component: {fileID: 1901275441}
+  - component: {fileID: 1901275445}
   m_Layer: 0
   m_Name: Plane (3)
   m_TagString: Checkpoint
@@ -983,7 +984,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ea7c21c45067c214aa84370336573797, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1027,6 +1028,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1901275445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1901275440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcb52f472f008e249810f79064ca8676, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  winText: {fileID: 67767283}
 --- !u!1001 &1968370019
 PrefabInstance:
   m_ObjectHideFlags: 0
