@@ -5,6 +5,5 @@ using UnityEngine;
 public interface CommandInterface
 {
     void Execute(); 
-   // void Redo();
     void Undo();
 }

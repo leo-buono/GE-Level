@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class CommandInvoker : MonoBehaviour
 {
-    static Queue<CommandInterface> commandBuffer;
+    static Queue<CommandInterface> commandBuffer = new Queue<CommandInterface>();
 
-    static List<CommandInterface> commandHistory;
-    static int counter;
+    static List<CommandInterface> commandHistory = new List<CommandInterface>();
+    static int counter = 0;
 
-    private void Awake()
-    {
-        commandBuffer = new Queue<CommandInterface>();
-        commandHistory = new List<CommandInterface>();
-    }
     public static void AddCommand(CommandInterface command)
     {
         while (commandHistory.Count > counter)
