@@ -6,7 +6,7 @@ public class CreatingPlatforms : MonoBehaviour
 {
     [SerializeField]
     public float maxDist = 50f;
-    public FactoryDesign<MonoBehaviour> factory;
+    public List<FactoryDesign<MonoBehaviour>> factory;
     private Camera cam;
     public int objectIndex = 0;
     private void Start() 
@@ -28,7 +28,7 @@ public class CreatingPlatforms : MonoBehaviour
                     print(hit.point);   
                     //print(obj.name);
                     //Instantiate object of choice through command undo/redo   
-                    CommandInvoker.AddCommand(new InstatiatePlat(factory, hit.point));
+                    CommandInvoker.AddCommand(new InstatiatePlat(factory[objectIndex], hit.point));
              }    
         }
     }
