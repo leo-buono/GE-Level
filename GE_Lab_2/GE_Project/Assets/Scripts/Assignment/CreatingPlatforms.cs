@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class CreatingPlatforms : MonoBehaviour
 {
+    [SerializeField]
     public float maxDist = 50f;
-    public List<GameObject> allObjs;
+    public FactoryDesign<MonoBehaviour> factory;
     private Camera cam;
+    public int objectIndex = 0;
     private void Start() 
     {
         cam = Camera.main;
@@ -24,7 +26,9 @@ public class CreatingPlatforms : MonoBehaviour
              if (Physics.Raycast (ray, out hit, maxDist)) 
              {
                     print(hit.point);   
-                    //Instantiate object of choice through command undo/redo        
+                    //print(obj.name);
+                    //Instantiate object of choice through command undo/redo   
+                    CommandInvoker.AddCommand(new InstatiatePlat(factory, hit.point));
              }    
         }
     }
