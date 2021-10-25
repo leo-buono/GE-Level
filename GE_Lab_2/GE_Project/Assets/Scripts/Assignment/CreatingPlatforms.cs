@@ -37,6 +37,20 @@ public class CreatingPlatforms : MonoBehaviour
                     }
                 } 
     }
+    private void FixedUpdate() 
+    {
+        if(Input.GetKey(KeyCode.Mouse0))
+        {
+            //Vector3 mousePos = Input.mousePosition;
+
+             Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+             RaycastHit hit;
+             if (Physics.Raycast (ray, out hit, maxDist)) 
+             {
+                currentlyHolding.transform.position = hit.point;
+             }
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -64,9 +78,11 @@ public class CreatingPlatforms : MonoBehaviour
             {
                 ScaleFunction(moveAmount, moveAmount, moveAmount);
             }
+            startScale = currentlyHolding.transform.localScale;
         }
-        else if(Input.GetKeyUp(KeyCode.S))
+        else if(Input.GetKeyUp(KeyCode.Tab))
         {
+            CommandInvoker.AddCommand(new ObjectScale(currentlyHolding.transform.localScale, startScale, currentlyHolding));
             currentlyHolding = null;
         }
         //MOVEMENT
@@ -83,24 +99,13 @@ public class CreatingPlatforms : MonoBehaviour
                 currentlyHolding = hit.transform.gameObject;
             }    
         }
-        if(Input.GetKey(KeyCode.Mouse0))
-        {
-            //Vector3 mousePos = Input.mousePosition;
-
-             Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-             RaycastHit hit;
-             if (Physics.Raycast (ray, out hit, maxDist)) 
-             {
-                currentlyHolding.transform.position = hit.point;
-             }
-        }
         if(Input.GetKeyUp(KeyCode.Mouse0))
         {
             if(currentlyHolding != null)
             {
                 //SET THE UNDO HERE
-                CommandInvoker.AddCommand(new ObjectMovement(currentlyHolding.transform.position, startPos, currentlyHolding));
-                currentlyHolding = null;
+                CommandInvoker.AddCommand(new ObjectMovement(currentlyHolding.transform.position, startPos, currentlyHolding, factory[objectIndex]));
+                //currentlyHolding = null;
             }
         }
         //SPAWNING OBJECT

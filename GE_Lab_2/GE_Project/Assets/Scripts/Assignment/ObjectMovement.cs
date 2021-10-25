@@ -7,7 +7,9 @@ public class ObjectMovement : CommandInterface
     Vector3 oldPos;
     Vector3 newPos;
     GameObject referenceObject;
-    public ObjectMovement(Vector3 _newPos, Vector3 _oldPos, GameObject _ref)
+
+    FactoryDesign<MonoBehaviour> factoryRef;
+    public ObjectMovement(Vector3 _newPos, Vector3 _oldPos, GameObject _ref, FactoryDesign<MonoBehaviour> factory)
     {
         newPos = _newPos;
         oldPos = _oldPos;
@@ -15,10 +17,16 @@ public class ObjectMovement : CommandInterface
     }
     void CommandInterface.Execute()
     {
-        referenceObject.transform.position = newPos;
+        if(referenceObject != null)
+        {
+            referenceObject.transform.position = newPos;
+        }
     }
     void CommandInterface.Undo()
     {
-        referenceObject.transform.position = oldPos;
+        if(referenceObject != null)
+        {
+            referenceObject.transform.position = oldPos;
+        }
     }
 }
