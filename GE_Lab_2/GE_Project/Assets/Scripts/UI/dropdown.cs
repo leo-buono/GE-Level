@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class dropdown : MonoBehaviour
 {
-    public Text TextBox;
+    //public Text TextBox;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,9 +14,9 @@ public class dropdown : MonoBehaviour
         dropdown.options.Clear();
 
         List<string> platforms = new List<string>();
-        platforms.Add("Checkpoint");
-        platforms.Add("Rotating");
         platforms.Add("Disappearing");
+        platforms.Add("Rotating");
+        platforms.Add("Checkpoint");
         platforms.Add("End");
         platforms.Add("Generic");
 
@@ -35,8 +35,7 @@ public class dropdown : MonoBehaviour
     void DropdownItemPressed (Dropdown dropdown)
     {
         int index = dropdown.value;
-
-        TextBox.text = dropdown.options[index].text;
+        CreatingPlatforms.objectIndex = index;
     }
 
 }
