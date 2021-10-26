@@ -462,7 +462,6 @@ GameObject:
   - component: {fileID: 547338216}
   - component: {fileID: 547338215}
   - component: {fileID: 547338218}
-  - component: {fileID: 547338219}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -549,28 +548,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   turnSpeed: 45
---- !u!114 &547338219
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 547338214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fea777b0ea14a2246b5ca513c614dfd9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  colour1: {r: 0, g: 0, b: 0, a: 0}
-  colour2: {r: 0, g: 0, b: 0, a: 0}
-  colour3: {r: 0, g: 0, b: 0, a: 0}
-  colour4: {r: 0, g: 0, b: 0, a: 0}
-  colour5: {r: 0, g: 0, b: 0, a: 0}
-  colour6: {r: 0, g: 0, b: 0, a: 0}
-  colour7: {r: 0, g: 0, b: 0, a: 0}
-  colour8: {r: 0, g: 0, b: 0, a: 0}
-  colour9: {r: 0, g: 0, b: 0, a: 0}
-  colour10: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &619832332
 GameObject:
   m_ObjectHideFlags: 0

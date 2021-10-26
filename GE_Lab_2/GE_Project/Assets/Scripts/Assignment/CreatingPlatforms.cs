@@ -39,17 +39,6 @@ public class CreatingPlatforms : MonoBehaviour
     }
     private void FixedUpdate() 
     {
-        if(Input.GetKey(KeyCode.Mouse0))
-        {
-            //Vector3 mousePos = Input.mousePosition;
-
-             Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-             RaycastHit hit;
-             if (Physics.Raycast (ray, out hit, maxDist)) 
-             {
-                currentlyHolding.transform.position = hit.point;
-             }
-        }
     }
 
     // Update is called once per frame
@@ -134,13 +123,24 @@ public class CreatingPlatforms : MonoBehaviour
                 }
             }    
         }
+        if(Input.GetKey(KeyCode.Mouse0))
+        {
+            //Vector3 mousePos = Input.mousePosition;
+
+             Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+             RaycastHit hit;
+             if (Physics.Raycast (ray, out hit, maxDist)) 
+             {
+                currentlyHolding.transform.position = hit.point;
+             }
+        }
         if(Input.GetKeyUp(KeyCode.Mouse0))
         {
             if(currentlyHolding != null)
             {
                 //SET THE UNDO HERE
                 CommandInvoker.AddCommand(new ObjectMovement(currentlyHolding.transform.position, startPos, currentlyHolding, factory[objectIndex]));
-                //currentlyHolding = null;
+                currentlyHolding = null;
             }
         }
         //SPAWNING OBJECT
