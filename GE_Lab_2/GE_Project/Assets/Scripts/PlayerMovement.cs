@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static event Action jumpEvent;
     public float speedMultiplier = 5f;
     public float jumpForce = 10f;
     public float turnSpeed = 90f;
@@ -50,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && !isFalling)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            jumpEvent?.Invoke();
             isFalling = true;
         }
         //TODO: player rotation which should rotate the camera as well
