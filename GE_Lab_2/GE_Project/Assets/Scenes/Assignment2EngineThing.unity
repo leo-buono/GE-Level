@@ -1527,6 +1527,33 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1122140375 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1422775906514269543, guid: 91af29dfe8491344293752a79418054e, type: 3}
+  m_PrefabInstance: {fileID: 1869913488}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1122140382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1122140375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fea777b0ea14a2246b5ca513c614dfd9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colour1: {r: 1, g: 0, b: 0, a: 0}
+  colour2: {r: 0.9175855, g: 1, b: 0, a: 0}
+  colour3: {r: 0, g: 1, b: 0.11194658, a: 0}
+  colour4: {r: 0, g: 0.19954538, b: 1, a: 0}
+  colour5: {r: 0.52590275, g: 0, b: 1, a: 0}
+  colour6: {r: 1, g: 0, b: 0.9272871, a: 0}
+  colour7: {r: 1, g: 0, b: 0.4629426, a: 0}
+  colour8: {r: 0, g: 1, b: 0.66862965, a: 0}
+  colour9: {r: 0, g: 0.4070108, b: 1, a: 0}
+  colour10: {r: 1, g: 0.43283355, b: 0, a: 0}
 --- !u!222 &1136779936
 CanvasRenderer:
   m_ObjectHideFlags: 0
