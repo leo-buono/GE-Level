@@ -85,6 +85,38 @@ public class CreatingPlatforms : MonoBehaviour
             CommandInvoker.AddCommand(new ObjectScale(currentlyHolding.transform.localScale, startScale, currentlyHolding));
             currentlyHolding = null;
         }
+        if(Input.GetKeyDown(KeyCode.X))
+        {
+            Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast (ray, out hit, maxDist)) 
+            {
+                if(hit.transform.gameObject.name != "StartPoint")
+                {
+                //Using Game Object in an effort to do all transforms in one file
+                startPos = hit.transform.position;
+                currentlyHolding = hit.transform.gameObject;
+                currentlyHolding.transform.position -= new Vector3(0, 0.5f, 0);
+                CommandInvoker.AddCommand(new ObjectMovement(currentlyHolding.transform.position, startPos, currentlyHolding, factory[objectIndex]));
+                }
+            }    
+        }
+        else if(Input.GetKeyDown(KeyCode.C))
+        {
+            Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast (ray, out hit, maxDist)) 
+            {
+                if(hit.transform.gameObject.name != "StartPoint")
+                {
+                //Using Game Object in an effort to do all transforms in one file
+                startPos = hit.transform.position;
+                currentlyHolding = hit.transform.gameObject;
+                currentlyHolding.transform.position += new Vector3(0, 0.5f, 0);
+                CommandInvoker.AddCommand(new ObjectMovement(currentlyHolding.transform.position, startPos, currentlyHolding, factory[objectIndex]));
+                }
+            }    
+        }
         //MOVEMENT
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
@@ -94,9 +126,12 @@ public class CreatingPlatforms : MonoBehaviour
              RaycastHit hit;
             if (Physics.Raycast (ray, out hit, maxDist)) 
             {
+                if(hit.transform.gameObject.name != "StartPoint")
+                {
                 //Using Game Object in an effort to do all transforms in one file
                 startPos = hit.transform.position;
                 currentlyHolding = hit.transform.gameObject;
+                }
             }    
         }
         if(Input.GetKeyUp(KeyCode.Mouse0))
