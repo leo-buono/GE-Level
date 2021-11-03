@@ -25,4 +25,9 @@ public class ObjectPlacerCommand : CommandInterface
         ObjectPlacer.RemoveObject(position, colour);
     }
 
+    //saving these files to a text file to store data on command rather than automatically (from lab 7 demo)
+    public override string ToString()
+    {
+        return "this will check what events occur in the editor on your command";
+    }
 }
