@@ -9,6 +9,18 @@ public class CommandInvoker : MonoBehaviour
     static List<CommandInterface> commandHistory = new List<CommandInterface>();
     static int counter = 0;
 
+    //dirty flag - bool check
+    private bool dirty_;
+
+    private void Awake()
+    {
+        commandBuffer = new Queue<CommandInterface>();
+        commandHistory = new List<CommandInterface>();
+
+        //initialized to false while no changes are being made
+        dirty_ = false;
+    }
+
     public static void AddCommand(CommandInterface command)
     {
         while (commandHistory.Count > counter)
@@ -50,5 +62,27 @@ public class CommandInvoker : MonoBehaviour
                 }
             }
         }
+
+        // if the dirty flag is true, check which commands are taking place
+        if (dirty_)
+        {
+            List<string> lines = new List<string>();
+
+            foreach(CommandInterface c in commandHistory)
+            {
+                lines.Add(c.ToString());
+            }
+
+            System.IO.File.WriteAllLines(Application.dataPath + "/dataSavingIsFun.txt", lines);
+
+            dirty_ = false;
+        }
+
+        // press ctrl + f to print events in the .txt file, then refresh assets folder
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            dirty_ = true;
+        }
+      
     }
 }
