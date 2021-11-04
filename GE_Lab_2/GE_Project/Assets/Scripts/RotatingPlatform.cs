@@ -13,13 +13,17 @@ public class RotatingPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (rb.angularVelocity.z < spinSpeed)
+        //Assignment 3 added dirty flag
+        if(!SwitchEditor.isPlaying)
         {
-            rb.AddTorque(transform.forward * force * Time.deltaTime);
-        }
-        else if((spinSpeed < 0) && (rb.angularVelocity.z > spinSpeed))
-        {
-            rb.AddTorque(transform.forward * force * Time.deltaTime);
+            if (rb.angularVelocity.z < spinSpeed)
+            {
+                rb.AddTorque(transform.forward * force * Time.deltaTime);
+            }
+            else if((spinSpeed < 0) && (rb.angularVelocity.z > spinSpeed))
+            {
+                rb.AddTorque(transform.forward * force * Time.deltaTime);
+            }
         }
     }
 }

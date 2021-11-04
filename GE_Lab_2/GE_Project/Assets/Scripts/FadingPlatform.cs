@@ -12,7 +12,6 @@ public class FadingPlatform : MonoBehaviour
     float amountFaded = 1f; //Keeping track how much it has faded (1f = 100% opacity, 0f = 0% opacity, completely clear)
 
     float freezeTimer = 0f;
-    
 
     Material mat;
     
@@ -24,44 +23,48 @@ public class FadingPlatform : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(startTimer)
+        //Assignment 3
+        if(!SwitchEditor.isPlaying)
         {
-            freezeTimer += Time.deltaTime;
-            if(freezeTimer >= delayUnFade)
+            if(startTimer)
             {
-                freezeTimer = 0f;
-                startTimer = false;
+                freezeTimer += Time.deltaTime;
+                if(freezeTimer >= delayUnFade)
+                {
+                    freezeTimer = 0f;
+                    startTimer = false;
+                }
             }
-        }
-        //The part that will make the platform fade once the character lands on the platform
-        if(fading)
-        {
-            Color col = mat.color;
-            amountFaded -= fadeSpeed * Time.deltaTime;
-            //This terribleness is because pointers can't exist
-            col.a = amountFaded;
-            mat.color = col;
-            startTimer = true;
-            //So alpha doesn't go negative
-            if(amountFaded <= 0)
+            //The part that will make the platform fade once the character lands on the platform
+            if(fading)
             {
-                fading = false;
-                this.GetComponent<MeshCollider>().enabled = false;
+                Color col = mat.color;
+                amountFaded -= fadeSpeed * Time.deltaTime;
+                //This terribleness is because pointers can't exist
+                col.a = amountFaded;
+                mat.color = col;
+                startTimer = true;
+                //So alpha doesn't go negative
+                if(amountFaded <= 0)
+                {
+                    fading = false;
+                    this.GetComponent<MeshCollider>().enabled = false;
+                }
             }
-        }
-        //Reappearing part so the platform isn't gone forever
-        else if(amountFaded <= 1f && !startTimer)
-        {
-            Color col = mat.color;
-            amountFaded += fadeSpeed * Time.deltaTime;
-            //This terribleness is because pointers can't exist
-            col.a = amountFaded;
-            mat.color = col;
-            //So alpha doesn't go negative
-            if(amountFaded <= 0.1)
+            //Reappearing part so the platform isn't gone forever
+            else if(amountFaded <= 1f && !startTimer)
             {
-                fading = false;
-                this.GetComponent<MeshCollider>().enabled = true;
+                Color col = mat.color;
+                amountFaded += fadeSpeed * Time.deltaTime;
+                //This terribleness is because pointers can't exist
+                col.a = amountFaded;
+                mat.color = col;
+                //So alpha doesn't go negative
+                if(amountFaded <= 0.1)
+                {
+                    fading = false;
+                    this.GetComponent<MeshCollider>().enabled = true;
+                }
             }
         }
     }

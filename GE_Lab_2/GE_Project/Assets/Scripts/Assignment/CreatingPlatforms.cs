@@ -44,7 +44,7 @@ public class CreatingPlatforms : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        if(Input.GetKey(KeyCode.Tab))
+        if(Input.GetKey(KeyCode.Tab) && currentlyHolding != null)
         {
             float moveAmount = 0.5f;
             if(Input.GetKey(KeyCode.Mouse4))
@@ -69,7 +69,7 @@ public class CreatingPlatforms : MonoBehaviour
             }
             startScale = currentlyHolding.transform.localScale;
         }
-        else if(Input.GetKeyUp(KeyCode.Tab))
+        else if(Input.GetKeyUp(KeyCode.Tab) && currentlyHolding != null)
         {
             CommandInvoker.AddCommand(new ObjectScale(currentlyHolding.transform.localScale, startScale, currentlyHolding));
             currentlyHolding = null;
@@ -129,9 +129,10 @@ public class CreatingPlatforms : MonoBehaviour
 
              Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
              RaycastHit hit;
-             if (Physics.Raycast (ray, out hit, maxDist)) 
+             if (Physics.Raycast (ray, out hit, maxDist) && (currentlyHolding != false)) 
              {
-                currentlyHolding.transform.position = hit.point;
+                 //Fixed moving towards camera issue
+                currentlyHolding.transform.position = new Vector3(hit.point.x, currentlyHolding.transform.position.y, hit.point.z);
              }
         }
         if(Input.GetKeyUp(KeyCode.Mouse0))

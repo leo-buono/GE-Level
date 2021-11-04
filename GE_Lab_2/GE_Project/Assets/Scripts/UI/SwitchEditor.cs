@@ -9,7 +9,7 @@ public class SwitchEditor : MonoBehaviour
     public GameObject MouseManager;
     public GameObject Timer;
     public GameObject DropdownMenu;
-    bool isPlaying = true;
+    static public bool isPlaying = true;
     // Start is called before the first frame update
     public void changeMode()
     {
