@@ -76,15 +76,12 @@ public class CreatingPlatforms : MonoBehaviour
         }
         if(Input.GetKeyDown(KeyCode.X))
         {
-            Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast (ray, out hit, maxDist)) 
+            if (currentlyHolding != null) 
             {
-                if(hit.transform.gameObject.name != "StartPoint")
+            if(currentlyHolding.name != "StartPoint")
                 {
                 //Using Game Object in an effort to do all transforms in one file
-                startPos = hit.transform.position;
-                currentlyHolding = hit.transform.gameObject;
+                startPos = currentlyHolding.transform.position;
                 currentlyHolding.transform.position -= new Vector3(0, 0.5f, 0);
                 CommandInvoker.AddCommand(new ObjectMovement(currentlyHolding.transform.position, startPos, currentlyHolding, factory[objectIndex]));
                 }
@@ -92,15 +89,12 @@ public class CreatingPlatforms : MonoBehaviour
         }
         else if(Input.GetKeyDown(KeyCode.C))
         {
-            Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-            RaycastHit hit;
-            if (Physics.Raycast (ray, out hit, maxDist)) 
+            if (currentlyHolding != null) 
             {
-                if(hit.transform.gameObject.name != "StartPoint")
+                if(currentlyHolding.name != "StartPoint")
                 {
                 //Using Game Object in an effort to do all transforms in one file
-                startPos = hit.transform.position;
-                currentlyHolding = hit.transform.gameObject;
+                startPos = currentlyHolding.transform.position;
                 currentlyHolding.transform.position += new Vector3(0, 0.5f, 0);
                 CommandInvoker.AddCommand(new ObjectMovement(currentlyHolding.transform.position, startPos, currentlyHolding, factory[objectIndex]));
                 }
@@ -141,7 +135,6 @@ public class CreatingPlatforms : MonoBehaviour
             {
                 //SET THE UNDO HERE
                 CommandInvoker.AddCommand(new ObjectMovement(currentlyHolding.transform.position, startPos, currentlyHolding, factory[objectIndex]));
-                currentlyHolding = null;
             }
         }
         //SPAWNING OBJECT
