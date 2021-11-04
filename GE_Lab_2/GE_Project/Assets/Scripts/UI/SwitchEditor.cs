@@ -8,6 +8,7 @@ public class SwitchEditor : MonoBehaviour
     public GameObject cameraForEditor;
     public GameObject MouseManager;
     public GameObject Timer;
+    public GameObject DropdownMenu;
     bool isPlaying = true;
     // Start is called before the first frame update
     public void changeMode()
@@ -19,6 +20,7 @@ public class SwitchEditor : MonoBehaviour
             cameraForEditor.SetActive(false);
             MouseManager.SetActive(false);
             Timer.SetActive(true);
+            DropdownMenu.SetActive(false);
             isPlaying = false;
         }
         //switch to editor
@@ -28,6 +30,7 @@ public class SwitchEditor : MonoBehaviour
             player.SetActive(false);
             MouseManager.SetActive(true);
             Timer.SetActive(false);
+            DropdownMenu.SetActive(true);
             isPlaying = true;
         }
     }
