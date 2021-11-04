@@ -20,25 +20,16 @@ public class CreatingPlatforms : MonoBehaviour
 
     void ScaleFunction(float xScale = 0, float yScale = 0, float zScale = 0)
     {
-         Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast (ray, out hit, maxDist)) 
-                {   
-                    //Using Game Object in an effort to do all transforms in one file
-                    startScale = hit.transform.localScale;
-                    currentlyHolding = hit.transform.gameObject;
-                    if(Input.GetAxis("Mouse ScrollWheel") > 0f)
-                    {
-                        currentlyHolding.transform.localScale = new Vector3(currentlyHolding.transform.localScale.x + xScale, currentlyHolding.transform.localScale.y + yScale, currentlyHolding.transform.localScale.z + zScale);
-                    }
-                    else if(Input.GetAxis("Mouse ScrollWheel") < 0f)
-                    {
-                        currentlyHolding.transform.localScale = new Vector3(currentlyHolding.transform.localScale.x - xScale, currentlyHolding.transform.localScale.y - yScale, currentlyHolding.transform.localScale.z - zScale);
-                    }
-                } 
-    }
-    private void FixedUpdate() 
-    {
+        //Using Game Object in an effort to do all transforms in one file
+        startScale = currentlyHolding.transform.localScale;
+        if(Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            currentlyHolding.transform.localScale = new Vector3(currentlyHolding.transform.localScale.x + xScale, currentlyHolding.transform.localScale.y + yScale, currentlyHolding.transform.localScale.z + zScale);
+        }
+        else if(Input.GetAxis("Mouse ScrollWheel") < 0f)
+        {
+            currentlyHolding.transform.localScale = new Vector3(currentlyHolding.transform.localScale.x - xScale, currentlyHolding.transform.localScale.y - yScale, currentlyHolding.transform.localScale.z - zScale);
+        }
     }
 
     // Update is called once per frame
@@ -72,7 +63,6 @@ public class CreatingPlatforms : MonoBehaviour
         else if(Input.GetKeyUp(KeyCode.Tab) && currentlyHolding != null)
         {
             CommandInvoker.AddCommand(new ObjectScale(currentlyHolding.transform.localScale, startScale, currentlyHolding));
-            currentlyHolding = null;
         }
         if(Input.GetKeyDown(KeyCode.X))
         {
@@ -123,7 +113,7 @@ public class CreatingPlatforms : MonoBehaviour
 
              Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
              RaycastHit hit;
-             if (Physics.Raycast (ray, out hit, maxDist) && (currentlyHolding != false)) 
+             if (Physics.Raycast (ray, out hit, maxDist) && (currentlyHolding != null)) 
              {
                  //Fixed moving towards camera issue
                 currentlyHolding.transform.position = new Vector3(hit.point.x, currentlyHolding.transform.position.y, hit.point.z);
@@ -135,6 +125,10 @@ public class CreatingPlatforms : MonoBehaviour
             {
                 //SET THE UNDO HERE
                 CommandInvoker.AddCommand(new ObjectMovement(currentlyHolding.transform.position, startPos, currentlyHolding, factory[objectIndex]));
+            }
+            else 
+            {
+                currentlyHolding = null;
             }
         }
         //SPAWNING OBJECT
@@ -153,5 +147,21 @@ public class CreatingPlatforms : MonoBehaviour
                     CommandInvoker.AddCommand(new InstatiatePlat(factory[objectIndex], hit.point));
              }    
         }
+        ItemSelection();
+    }
+    bool isSelected = false;
+    void ItemSelection()
+    {
+        if(currentlyHolding != null)
+        {
+            if (currentlyHolding.TryGetComponent(out MeshRenderer mesh))
+            {
+                Color col = mesh.material.color;
+            }
+        }
+    }
+    IEnumerator ItemTimer()
+    {
+        yield return new WaitForSeconds(1f);
     }
 }
