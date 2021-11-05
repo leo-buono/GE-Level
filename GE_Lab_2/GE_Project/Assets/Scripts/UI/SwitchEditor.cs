@@ -36,23 +36,22 @@ public class SwitchEditor : MonoBehaviour
         }
     }
 
+//actually a panel
     public GameObject helpCanvas;
 
-    public GameObject editCanvas;
-
+    public Button btn;
     bool helpCan = true;
     public void helpMode()
     {
-        // helpCanvas.SetActive(helpCan);
-        // editCanvas.SetActive(helpCan);
-        // helpCan = !helpCan;
-        // if(helpCan)
-        // {
-        //     this.GetComponent<Text>().text = "X";
-        // }
-        // else 
-        // {
-        //     this.GetComponent<Text>().text = "?";
-        // }
+        helpCan = !helpCan;
+        helpCanvas.SetActive(helpCan);
+        if(helpCan)
+        {
+            btn.GetComponentInChildren<Text>().text = "X";
+        }
+        else 
+        {
+            btn.GetComponentInChildren<Text>().text = "?";
+        }
     }
 }
