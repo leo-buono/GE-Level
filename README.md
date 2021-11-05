@@ -6,7 +6,7 @@ Game description:
 Players are given the ability to utilize a fully functioning level editor. There are a number of helpful UI elements which allow you to switch camera modes between editor and gameplay, switch between platform types, count the number of times the character jumped, time the playthrough, etc. A couple other added functionality:
 Checkpoints  
 Ending platforms which will reset the timer  
-WASD and Space player movement   
+WASD and Space player movement while in teh "play" mode  
 Screenshots:  
  
  
