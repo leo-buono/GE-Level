@@ -16,6 +16,7 @@ public class RotatingPlatform : MonoBehaviour
         //Assignment 3 added dirty flag
         if(!SwitchEditor.isPlaying)
         {
+            rb.isKinematic = false;
             if (rb.angularVelocity.z < spinSpeed)
             {
                 rb.AddTorque(transform.forward * force * Time.deltaTime);
@@ -24,6 +25,10 @@ public class RotatingPlatform : MonoBehaviour
             {
                 rb.AddTorque(transform.forward * force * Time.deltaTime);
             }
+        }
+        else 
+        {
+            rb.isKinematic = true;
         }
     }
 }

@@ -21,7 +21,7 @@ public class SwitchEditor : MonoBehaviour
             cameraForEditor.SetActive(false);
             MouseManager.SetActive(false);
             Timer.SetActive(true);
-            DropdownMenu.SetActive(false);
+            DropdownMenu.SetActive(false); //Dirty flag
             isPlaying = false;
         }
         //switch to editor
