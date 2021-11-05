@@ -147,21 +147,21 @@ public class CreatingPlatforms : MonoBehaviour
                     CommandInvoker.AddCommand(new InstatiatePlat(factory[objectIndex], hit.point));
              }    
         }
-        ItemSelection();
+        // ItemSelection();
     }
-    bool isSelected = false;
-    void ItemSelection()
-    {
-        if(currentlyHolding != null)
-        {
-            if (currentlyHolding.TryGetComponent(out MeshRenderer mesh))
-            {
-                Color col = mesh.material.color;
-            }
-        }
-    }
-    IEnumerator ItemTimer()
-    {
-        yield return new WaitForSeconds(1f);
-    }
+    // bool isSelected = false;
+    // void ItemSelection()
+    // {
+    //     if(currentlyHolding != null)
+    //     {
+    //         if (currentlyHolding.TryGetComponent(out MeshRenderer mesh))
+    //         {
+    //             Color col = mesh.material.color;
+    //         }
+    //     }
+    // }
+    // IEnumerator ItemTimer()
+    // {
+    //     yield return new WaitForSeconds(1f);
+    // }
 }

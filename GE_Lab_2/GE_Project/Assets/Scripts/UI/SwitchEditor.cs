@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SwitchEditor : MonoBehaviour
 {
@@ -33,5 +34,25 @@ public class SwitchEditor : MonoBehaviour
             DropdownMenu.SetActive(true);
             isPlaying = true;
         }
+    }
+
+    public GameObject helpCanvas;
+
+    public GameObject editCanvas;
+
+    bool helpCan = true;
+    public void helpMode()
+    {
+        // helpCanvas.SetActive(helpCan);
+        // editCanvas.SetActive(helpCan);
+        // helpCan = !helpCan;
+        // if(helpCan)
+        // {
+        //     this.GetComponent<Text>().text = "X";
+        // }
+        // else 
+        // {
+        //     this.GetComponent<Text>().text = "?";
+        // }
     }
 }
