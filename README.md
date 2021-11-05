@@ -13,8 +13,8 @@ Screenshots:
  
  ![Alt Text](https://cdn.discordapp.com/attachments/900747883698061342/902376882291503104/unknown.png)
  ![Alt Text](https://cdn.discordapp.com/attachments/900747883698061342/902384877729640448/unknown.png)
- ![Alt Text](https://cdn.discordapp.com/attachments/900747883698061342/902385016141652028/unknown.png)  
-  ![Alt Text](https://cdn.discordapp.com/attachments/892210446650728488/906013951500886057/unknown.png)
+ ![Alt Text](https://cdn.discordapp.com/attachments/900747883698061342/902385016141652028/unknown.png) 
+  ![Alt Text](https://cdn.discordapp.com/attachments/892210446650728488/906014712523812965/unknown.png)
   
 
 
@@ -23,7 +23,7 @@ Screenshots:
 
 Link to video:    
 UML diagram(s):  
- ![Alt Text](https://cdn.discordapp.com/attachments/892210446650728488/906014712523812965/unknown.png)
+  ![Alt Text](https://cdn.discordapp.com/attachments/892210446650728488/906013951500886057/unknown.png)
  link to diagram: https://cdn.discordapp.com/attachments/892210446650728488/906014589228052501/Diagram_2021-11-04_22-58-11.uxf 
 
 
