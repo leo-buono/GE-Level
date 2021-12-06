@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float speedMultiplier = 5f;
     public float jumpForce = 10f;
     public float turnSpeed = 90f;
+    public float interactionDistance = 1f;
     float currentAngle;
     Rigidbody rb;
     Vector3 respawnPosition;
@@ -56,12 +57,12 @@ public class PlayerMovement : MonoBehaviour
             isFalling = true;
         }
         //TODO: player rotation which should rotate the camera as well
-        if(Input.GetKey(KeyCode.Q))
+        if(Input.GetKey(KeyCode.E))
         {
             transform.rotation *= Quaternion.AngleAxis(turnSpeed * Time.deltaTime, Vector3.up);
             currentAngle = transform.rotation.eulerAngles.y;
         }
-        if(Input.GetKey(KeyCode.E))
+        if(Input.GetKey(KeyCode.Q))
         {
             transform.rotation *= Quaternion.AngleAxis(-turnSpeed * Time.deltaTime, Vector3.up);
             currentAngle = transform.rotation.eulerAngles.y;
@@ -69,6 +70,19 @@ public class PlayerMovement : MonoBehaviour
         if(transform.position.y < -50f)
         {
             transform.position = respawnPosition;
+        }
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            RaycastHit hit;
+            Debug.DrawRay(transform.position - new Vector3(0, 0.5f, 0), transform.TransformVector(Vector3.forward) * interactionDistance, Color.yellow);
+            if (Physics.Raycast(transform.position - new Vector3(0, 0.5f, 0), transform.TransformVector(Vector3.forward), out hit, interactionDistance))
+            {
+                if(hit.transform.tag == "Interactable")
+                {
+                    //Run the minigame
+                    print("Interaction Accepted");
+                }
+            }
         }
     } 
     void OnCollisionStay()
